@@ -1,0 +1,29 @@
+version: '3.2'
+
+services:
+  aaa:
+    image: registry.gitlab.com/oadiazp/graphene_many_to_many_test:latest
+    ports:
+      - 2018:80
+    networks:
+      - graphene_many_to_many_test_net
+    depends_on:
+      - pgsql
+
+  pgsql:
+    image: postgres
+    networks:
+      - graphene_many_to_many_test_net
+    environment:
+      POSTGRES_PASSWORD: s7RXvwMyR9WfQmx88evkhUk85
+      POSTGRES_DB: graphene_many_to_many_test
+    volumes:
+      - graphene_many_to_many_test_data:/var/lib/postgresql/data
+
+networks:
+  graphene_many_to_many_test_net:
+    external: true
+
+volumes:
+  graphene_many_to_many_test_data:
+    external: true
