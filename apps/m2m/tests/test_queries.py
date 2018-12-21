@@ -15,6 +15,9 @@ class TestQuery:
         group1.students.add(student)
 
         client = Client(schema)
+
+        pytest.set_trace()
+
         result = client.execute("""
             query {
               groups(students_In: [%s]) {
